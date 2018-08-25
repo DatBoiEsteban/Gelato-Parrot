@@ -1,0 +1,7 @@
+{
+	"newOrder": 3,
+	"minOrderGen": 1,
+	"maxOrderGen": 4,
+	"maxIceCream": 3,
+	"maxToppings": 2
+}

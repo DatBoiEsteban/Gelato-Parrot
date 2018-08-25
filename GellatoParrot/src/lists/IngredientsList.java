@@ -3,7 +3,13 @@ package lists;
 public class IngredientsList {
 	private Node First;
 	private Node Last;
-	private int Length = 0;
+	private int Length;
+
+	public IngredientsList() {
+		First = null;
+		Last = null;
+		Length = 0;
+	}
 
 	public boolean isEmpty() {
 		return Length == 0;
