@@ -12,15 +12,15 @@ public class GellatoParrot {
 		IngredientsList ing = p.getList();
 		//System.out.println(ing.getNode(0).toString());
 		for (int i = 0; i < 5; i++) {
-			for(int j = 0; j < 8; j++) {
-				System.out.println(ing.getNode(j).toString());
-			}
+			//for(int j = 0; j < 8; j++) {
+			//	System.out.println(ing.getNode(j).toString());
+			//}
 			ing =shuffler.shuffle(ing);
-			System.out.println("----------------------------------------------------------------------------");
-			for(int h = 0; h < 8; h++) {
-				System.out.println(ing.getNode(h).toString());
-			}
-			System.out.println("----------------------------------------------------------------------------");
+			//System.out.println("----------------------------------------------------------------------------");
+			//for(int h = 0; h < 8; h++) {
+			//	System.out.println(ing.getNode(h).toString());
+			//}
+			//System.out.println("----------------------------------------------------------------------------");
 		}
 	}
 
