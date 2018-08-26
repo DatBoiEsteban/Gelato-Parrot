@@ -28,4 +28,7 @@ public class Node {
 	public void setValor(Ingredient pValor) {
 		Valor = pValor;
 	}
+	public String toString() {
+		return Valor.toString();
+	}
 }
