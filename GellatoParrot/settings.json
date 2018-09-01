@@ -4,49 +4,55 @@
 			"Type": "bola",
 			"Name": "Vainilla",
 			"Color": "#EEE9CD",
-			"ID": "0",
+			"ID": "0"
 		},
 		{
 			"Type": "bola",
 			"Name": "Chocolate",
 			"Color": "#7e3f12",
-			"ID": "1",
+			"ID": "1"
 		},
 		{
 			"Type": "bola",
 			"Name": "Limon",
 			"Color": "#00FF00",
-			"ID": "2",
+			"ID": "2"
 		},
 		{
 			"Type": "bola",
 			"Name": "Fresa",
 			"Color": "#FF4C4C",
-			"ID": "3",
+			"ID": "3"
 		},
 		{
 			"Type": "Topping",
 			"Name": "Frutas",
 			"Color": "#800080",
-			"ID": "4",
+			"ID": "4"
 		},
 		{
 			"Type": "Topping",
 			"Name": "Fresa",
 			"Color": "#ff0065",
-			"ID": "5",
+			"ID": "5"
 		},
 		{
 			"Type": "Topping",
 			"Name": "Galleta",
 			"Color": "#A5682A",
-			"ID": "6",
+			"ID": "6"
 		},
 		{
 			"Type": "Topping",
 			"Name": "Confite",
 			"Color": "#00FFFF",
-			"ID": "7",
-		},
-	]
+			"ID": "7"
+		}
+	],
+	"OrderFreq": 3,
+	"minOrderGen": 1,
+	"maxOrderGen": 4,
+	"maxIceCream": 3,
+	"maxToppings": 2,
+	"probability": 30
 }
