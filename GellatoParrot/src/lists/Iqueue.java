@@ -1,5 +1,7 @@
 package lists;
 
-public interface Iqueue {
+public interface Iqueue<T> {
 
+	public void enqueue(T pValor);
+	public void dequeue();
 }
