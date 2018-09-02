@@ -1,14 +1,14 @@
 package main;
 
-import lists.IngredientsList;
+import lists.GenericList;
 import loader.JsonLoader;
 
 public class GellatoParrot {
 
 	public static void main(String[] args) {
-		IngredientsList p =JsonLoader.ingredientLoader();;
+		GenericList<Object> p =JsonLoader.ingredientLoader();;
 		for (int i = 0; i < p.getLength(); i++) {
-			System.out.println(p.getIngredient(i).toString());
+			System.out.println(p.getValue(i).toString());
 		}
 	}
 

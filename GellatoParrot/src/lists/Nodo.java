@@ -4,7 +4,28 @@ public class Nodo<T> {
 	private T Valor	;
 	private Nodo<T> Next;
 	private Nodo<T> Previous; 
+	private int Priority;
 	
+	public Nodo() {
+		 Valor = null;
+		 Next = null;
+		 Previous = null;
+		 Priority =0;	
+	}
+	
+	@Override
+	public String toString() {
+		return Valor.toString();
+	}
+
+	public int getPriority() {
+		return Priority;
+	}
+
+	public void setPriority(int priority) {
+		Priority = priority;
+	}
+
 	public Nodo<T> getPrevious() {
 		return Previous;
 	}

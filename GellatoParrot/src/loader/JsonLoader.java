@@ -8,19 +8,19 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import lists.GenericList;
 import lists.Ingredient;
-import lists.IngredientsList;
-import lists.Node;
+import lists.Nodo;
 import main.Config;
 
 public class JsonLoader {
-	public static IngredientsList ingredientLoader() {
+	public static GenericList<Object> ingredientLoader() {
 		JSONParser parser = new JSONParser();
-		IngredientsList IngL = new IngredientsList();
+		GenericList<Object> IngL = new GenericList<Object>();
 
 		try {
 
-			Object obj = parser.parse(new FileReader("inventory.json"));
+			Object obj = parser.parse(new FileReader("settings.json"));
 			JSONObject jsonObject = (JSONObject) obj;
 			JSONArray arr = (JSONArray) jsonObject.get("ingredients");
 			Iterator it = arr.iterator();
@@ -32,7 +32,7 @@ public class JsonLoader {
 				ing.setName((String) pair.get("Name"));
 				ing.setColor((String) pair.get("Color"));
 				ing.setID(Integer.parseInt((String) pair.get("ID")));
-				Node ingN = new Node();
+				Nodo<Object> ingN = new Nodo<Object>();
 				ingN.setValor(ing);
 				IngL.add(ingN);
 			}
@@ -47,7 +47,7 @@ public class JsonLoader {
 		Config cfg = new Config();
 		JSONParser parser = new JSONParser();
 		try {
-			Object obj = parser.parse(new FileReader("inventory.json"));
+			Object obj = parser.parse(new FileReader("settings.json"));
 			JSONObject jsonObject = (JSONObject) obj;
 			cfg.setOrderFreq((int) jsonObject.get("OrderFreq"));
 			cfg.setMinOrderGen((int) jsonObject.get("minOrderGen"));

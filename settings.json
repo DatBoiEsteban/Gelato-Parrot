@@ -48,11 +48,6 @@
 			"Color": "#00FFFF",
 			"ID": "7"
 		}
-	],
-	"OrderFreq": 3,
-	"minOrderGen": 1,
-	"maxOrderGen": 4,
-	"maxIceCream": 3,
-	"maxToppings": 2,
-	"probability": 30
+	]
+	
 }
