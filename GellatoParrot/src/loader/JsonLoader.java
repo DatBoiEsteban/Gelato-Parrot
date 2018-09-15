@@ -10,13 +10,14 @@ import org.json.simple.parser.JSONParser;
 
 import lists.GenericList;
 import lists.Ingredient;
+
 import lists.Nodo;
 import main.Config;
 
 public class JsonLoader {
-	public static GenericList<Object> ingredientLoader() {
+	public GenericList<Ingredient> ingredientLoader() {
 		JSONParser parser = new JSONParser();
-		GenericList<Object> IngL = new GenericList<Object>();
+		GenericList<Ingredient> IngL = new GenericList<Ingredient>();
 
 		try {
 
@@ -30,11 +31,9 @@ public class JsonLoader {
 				JSONObject pair = (JSONObject) ((Map) it.next());
 				ing.setType((String) pair.get("Type"));
 				ing.setName((String) pair.get("Name"));
-				ing.setColor((String) pair.get("Color"));
+				ing.setColor((int) pair.get("Color"));
 				ing.setID(Integer.parseInt((String) pair.get("ID")));
-				Nodo<Object> ingN = new Nodo<Object>();
-				ingN.setValor(ing);
-				IngL.add(ingN);
+				IngL.add(ing);
 			}
 
 		} catch (Exception e) {
@@ -43,7 +42,7 @@ public class JsonLoader {
 		return IngL;
 	}
 
-	public static Config configLoader() {
+	public Config configLoader() {
 		Config cfg = new Config();
 		JSONParser parser = new JSONParser();
 		try {
