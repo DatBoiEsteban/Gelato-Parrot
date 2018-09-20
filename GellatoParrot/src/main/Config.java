@@ -1,58 +1,58 @@
 package main;
 
 public class Config {
-	private int OrderFreq;
-	private int minOrderGen;
-	private int maxOrderGen;
-	private int maxIceCream;
-	private int maxToppings;
-	private int probability;
+	private Long OrderFreq;
+	private Long minOrderGen;
+	private Long maxOrderGen;
+	private Long maxIceCream;
+	private Long maxToppings;
+	private Long probability;
 
-	public int getProbability() {
+	public Long getProbability() {
 		return probability;
 	}
 
-	public void setProbability(int pProbability) {
+	public void setProbability(Long pProbability) {
 		this.probability = pProbability;
 	}
 
-	public int getOrderFreq() {
+	public Long getOrderFreq() {
 		return OrderFreq;
 	}
 
-	public void setOrderFreq(int pOrderFreq) {
+	public void setOrderFreq(Long pOrderFreq) {
 		OrderFreq = pOrderFreq;
 	}
 
-	public int getMinOrderGen() {
+	public Long getMinOrderGen() {
 		return minOrderGen;
 	}
 
-	public void setMinOrderGen(int pMinOrderGen) {
+	public void setMinOrderGen(Long pMinOrderGen) {
 		this.minOrderGen = pMinOrderGen;
 	}
 
-	public int getMaxOrderGen() {
+	public Long getMaxOrderGen() {
 		return maxOrderGen;
 	}
 
-	public void setMaxOrderGen(int pMaxOrderGen) {
+	public void setMaxOrderGen(Long pMaxOrderGen) {
 		this.maxOrderGen = pMaxOrderGen;
 	}
 
-	public int getMaxIceCream() {
+	public Long getMaxIceCream() {
 		return maxIceCream;
 	}
 
-	public void setMaxIceCream(int pMaxIceCream) {
+	public void setMaxIceCream(Long pMaxIceCream) {
 		this.maxIceCream = pMaxIceCream;
 	}
 
-	public int getMaxToppings() {
+	public Long getMaxToppings() {
 		return maxToppings;
 	}
 
-	public void setMaxToppings(int pMaxToppings) {
+	public void setMaxToppings(Long pMaxToppings) {
 		this.maxToppings = pMaxToppings;
 	}
 }

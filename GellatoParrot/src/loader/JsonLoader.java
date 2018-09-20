@@ -15,51 +15,61 @@ import lists.Nodo;
 import main.Config;
 
 public class JsonLoader {
-	public GenericList<Ingredient> ingredientLoader() {
-		JSONParser parser = new JSONParser();
-		GenericList<Ingredient> IngL = new GenericList<Ingredient>();
+	private JSONParser parser = new JSONParser();
+	private GenericList<Ingredient> IngL = new GenericList<Ingredient>();
+	private Config cfg = new Config();
+	
+	public JsonLoader() {
+		ingredientLoader();
+		configLoader();
+	}
+	private void ingredientLoader() {
 
 		try {
-
-			Object obj = parser.parse(new FileReader("settings.json"));
+			FileReader fr = new FileReader("settings.json");
+			Object obj = parser.parse(fr);
 			JSONObject jsonObject = (JSONObject) obj;
 			JSONArray arr = (JSONArray) jsonObject.get("ingredients");
-			Iterator it = arr.iterator();
+			Iterator<JSONArray> it = arr.iterator();
 			Ingredient ing;
 			while (it.hasNext()) {
 				ing = new Ingredient();
 				JSONObject pair = (JSONObject) ((Map) it.next());
 				ing.setType((String) pair.get("Type"));
 				ing.setName((String) pair.get("Name"));
-				ing.setColor((int) pair.get("Color"));
-				ing.setID(Integer.parseInt((String) pair.get("ID")));
-				IngL.add(ing);
+				ing.setColor((String) pair.get("Color"));
+				ing.setiD( (Long) pair.get("ID"));
+				this.IngL.add(ing);
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return IngL;
 	}
 
-	public Config configLoader() {
-		Config cfg = new Config();
-		JSONParser parser = new JSONParser();
+	private void configLoader() {
 		try {
 			Object obj = parser.parse(new FileReader("settings.json"));
 			JSONObject jsonObject = (JSONObject) obj;
-			cfg.setOrderFreq((int) jsonObject.get("OrderFreq"));
-			cfg.setMinOrderGen((int) jsonObject.get("minOrderGen"));
-			cfg.setMaxOrderGen((int) jsonObject.get("maxOrderGen"));
-			cfg.setMaxIceCream((int) jsonObject.get("maxIceCream"));
-			cfg.setMaxToppings((int) jsonObject.get("maxToppings"));
-			cfg.setProbability((int) jsonObject.get("probability"));
+			cfg.setOrderFreq((Long) jsonObject.get("OrderFreq"));
+			cfg.setMinOrderGen((Long) jsonObject.get("minOrderGen"));
+			cfg.setMaxOrderGen((Long) jsonObject.get("maxOrderGen"));
+			cfg.setMaxIceCream((Long) jsonObject.get("maxIceCream"));
+			cfg.setMaxToppings((Long) jsonObject.get("maxToppings"));
+			cfg.setProbability((Long) jsonObject.get("probability"));
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return cfg;
 
+	}
+
+	public GenericList<Ingredient> getIngL() {
+		return IngL;
+	}
+
+	public Config getCfg() {
+		return cfg;
 	}
 
 }
