@@ -1,10 +1,10 @@
 {
-  "OrderFreq": 5,
-  "minOrderGen": 3,
-  "maxOrderGen": 7,
-  "maxIceCream": 2,
-  "maxToppings": 4,
-  "probability": 0,
+  "OrderFreq": 1,
+  "minOrderGen": 8,
+  "maxOrderGen": 20,
+  "maxIceCream": 5,
+  "maxToppings": 3,
+  "probability": 20,
   "ingredients": [
     {
       "Type": "bola",

@@ -55,7 +55,7 @@ public class Ingredient implements IDrawableObj, I_INGconsts {
 		return "Name: " + name + ", Type: " + type + ", Color in HEX: " + color + ", ID: " + iD + ".";
 	}
 
-	public void paintIng(Graphics g, int pX, int pY) {
+	public void paintSelf(Graphics g, int pX, int pY) {
 		g.setColor(this.getColor());
 		if (this.getType() == I_IngTypes.HELADO) {
 			g.drawOval(pX - INGREDIENT_BORDER_CENTER, pY - INGREDIENT_BORDER_CENTER, INGREDIENT_BORDER, INGREDIENT_BORDER);

@@ -15,12 +15,14 @@ public class Stack<T> extends GenericList<T> implements Istackable<T> {
 
 	public void Push(T pValor) {
 		insert(pValor, 0);
-		
+		setTop(getFirst());
 	}
 
 
-	public void Pop() {
+	public T Pop() {
+		Nodo<T> temp = Top;
 		remove(0);
+		return temp.getValor();
 		
 	}
 

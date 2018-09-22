@@ -16,8 +16,10 @@ public class OrderProducer extends Thread {
 	private GenericList<Ingredient> IceCreamL = new GenericList<Ingredient>();
 	private GenericList<Ingredient> ToppingL = new GenericList<Ingredient>();
 	private Queue<GenericList<Ingredient>> orders = new Queue<GenericList<Ingredient>>();
+	private boolean ordersReady = false;
 
 	public OrderProducer(Config cfg, GenericList<Ingredient> pIngL) {
+		this.setName("Order Producer Thread");
 		OrderFreq = cfg.getOrderFreq();
 		minOrderGen = cfg.getMinOrderGen();
 		maxOrderGen = cfg.getMaxOrderGen();
@@ -37,45 +39,63 @@ public class OrderProducer extends Thread {
 	@Override
 	public void run() {
 		int randOrder = (int) ((int) (Math.random() * (maxOrderGen - minOrderGen)) + minOrderGen);
+		int i = 0;
 		while (randOrder-- > 0) {
-			int randProb = (int) (Math.random() * 100 + 1);
-			if (randProb > probability) {
-				orders.enqueue(randOrderGen());
-			} else {
-				orders.enqueue(randOrderGen(), (int) randProb / 10);
+			try {
+				int prob = (int) (Math.random() * 100 + 1);
+				if (prob > probability) {
+					orders.enqueue(randOrderGen());
+				} else {
+					orders.enqueue(randOrderGen(), (int) (prob / 10));
+				}
+				ordersReady = true;
+				if (i++ > 2) {
+					Thread.sleep(OrderFreq * 1000);
+				}
+
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		}
-		try {
-			Thread.sleep(OrderFreq * 1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
 		}
 	}
 
-	public GenericList<Ingredient> randOrderGen() {
+	private GenericList<Ingredient> randOrderGen() {
 		GenericList<Ingredient> ord = new GenericList<Ingredient>();
-		int randIC = (int) (Math.random() * maxIceCream);
-		int randTPP = (int) (Math.random() * maxToppings);
-		while (randIC-- > 0) {
-			ord.add(getRandIceCream());
-		}
+		int randIC = (int) (Math.random() * maxIceCream + 1);
+		int randTPP = (int) (Math.random() * maxToppings + 1);
 		while (randTPP-- > 0) {
 			ord.add(getRandTopping());
+		}
+		while (randIC-- > 0) {
+			ord.add(getRandIceCream());
 		}
 		return ord;
 	}
 
-	public Ingredient getRandIceCream() {
+	private Ingredient getRandIceCream() {
 		int rand = (int) (Math.random() * IceCreamL.getLength());
 		return IceCreamL.getValue(rand);
 	}
 
-	public Ingredient getRandTopping() {
+	private Ingredient getRandTopping() {
 		int rand = (int) (Math.random() * ToppingL.getLength());
 		return ToppingL.getValue(rand);
 	}
 
-	public Long getOrderFreq() {
-		return OrderFreq;
+	public GenericList<Ingredient> getOrder() {
+		return orders.getValue(0);
+	}
+
+	public void orderDone() {
+		orders.dequeue();
+	}
+
+	public Boolean areOrdersReady() {
+		return ordersReady;
+	}
+
+	public int getOrdersLeft() {
+		return orders.getLength() - 1;
 	}
 }

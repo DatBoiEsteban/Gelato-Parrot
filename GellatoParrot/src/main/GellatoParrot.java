@@ -1,22 +1,19 @@
 package main;
 
-import gui.GellatoUI;
-import lists.GenericList;
+import gui.GellatoGui;
 import lists.Ingredient;
+import lists.Stack;
 import loader.JsonLoader;
-import threads.OrderProducer;
+import threads.ThreadManager;
 
 public class GellatoParrot {
+
 	public static void main(String[] args) {
 		JsonLoader json = new JsonLoader();
-		GellatoUI window = new GellatoUI(json);
-		Config cfg = json.getCfg();
-		GenericList<Ingredient> ingL = json.getIngL();
-		if (window.getStatus()) {
-			OrderProducer ordProd = new OrderProducer(cfg, ingL);
-			ordProd.start();
-		}
-
+		GellatoGui window = new GellatoGui();
+		ThreadManager threadM = new ThreadManager(window, json);
+		threadM.start();
+		
 	}
 
 }

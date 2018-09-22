@@ -2,49 +2,46 @@ package threads;
 
 import javax.swing.JLabel;
 
+import gui.GameTime;
+
 public class Timer extends Thread {
-	private Timer instance = null;
-	private int time = 0;
-	private Boolean pause = true;
+	private Boolean pause = false;
 	private Boolean TimesUp = false;
-	JLabel label;
+	GameTime label;
 
 	public int getTime() {
-		return time;
+		return label.getTime();
 	}
 
-	public Timer(JLabel pLabel) {
+	public Timer(GameTime pLabel) {
+		this.setName("Timer Thread");
 		label = pLabel;
 	}
 
-	public Boolean getTimesUp() {
+	public Boolean isTimeUp() {
 		return TimesUp;
 	}
 
-	public void resumeTimer() {
-		pause = false;
-	}
 
 	public void pauseTimer() {
 		pause = true;
 	}
-	
+
 	@Override
 	public void run() {
-		try {
-			while (!pause) {
-				if (time > 120) {
-					TimesUp = true;
+			try {
+				Thread.sleep(2500);
+				while (!pause) {
+					if (label.getTime() > 120) {
+						TimesUp = true;
+					}
+					Thread.sleep(500);
+					label.setTime(label.getTime() +1);
+					Thread.sleep(500);
 				}
-				Thread.sleep(500);
-				label.setText("Tiempo: " + time++ + "s");
-				Thread.sleep(500);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		}
-		
-	}
-
 }
